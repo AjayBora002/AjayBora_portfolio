@@ -1,0 +1,53 @@
+AJAY BORA
+boraajay26@gmail.comHaldwani, Nainital, 263139+91 8630803571||
+PROFILE SUMMARY
+Analytical and results-driven Data Science and AI/ML undergraduate with hands-on experience in building
+scalable data pipelines, predictive models, and intelligent systems. Proficient in Python, SQL, BigQuery, and
+modern machine learning frameworks. Passionate about transforming complex datasets into actionable insights
+and robust data engineering solutions.
+EXPERIENCE
+Data Science with AI/ML Intern( YBI Foundation | Jan 2025 – March 2025)
+Constructed a Weather Prediction Model using regression algorithms, achieving 92% accuracy (R2 Score) on a
+historical dataset of 10,000+ records.
+Optimized data preprocessing pipelines using Pandas to clean and normalize meteorological data, reducing
+model training time by 20%.
+Data Visualization Intern(Infosys | Feb 2026 - Present)
+Designed and orchestrated an automated ETL pipeline using Python and Pandas, successfully ingesting,
+cleaning, and preprocessing 300,000+ unstructured global weather records from the Kaggle API.
+Conducted rigorous statistical analysis of large datasets to extract seasonal trends, determine variable
+correlations, and identify 99th-percentile anomalous extreme weather events globally.
+Developed an interactive dashboard using Streamlit and Plotly, engineering dynamic choropleth maps and
+complex time-series charts to visualize regional climate findings for non-technical stakeholders.
+EDUCATION
+Amrapali University – Bachelor of Technology in CSE (AI/ML).
+Expected Graduation (August 2028).
+TECHNICAL SKILLS
+PROJECTS
+|Github|Linkedin
+Languages: Java, Python, C, SQL, HTML/CSS
+Data Engineering and Cloud : AWS, Google Bigquery, Docker and Kubernetes, Git/Github, ETL, Pipelines
+Machine Learning : Scikit-Learn, Pandas, Numpy, YOLO, Matplotlib
+Visualization : Tableau, PowerBI, Streamlit, Plotly, Seaborn
+Databases and Frameworks : MySQL, Oracle, Relational Schemas, Flask, Generative AI(LLMs)
+Weather Prediction Model
+Full Library Management System
+Developed an AI-powered conversational assistant to provide hyper-localized nutritional and agricultural
+guidance for hilly regions.
+Dockerized the application environment to ensure seamless deployment and consistent performance across
+different development and production stages.
+Integrated Generative AI pipelines and NLP to contextually answer queries regarding regional crop nutrition and
+dietary health.
+Poshan Pahad AI
+Architected a scalable Node.js/Python backend system to manage book inventory and secure user account
+authentication.
+Applied foundational data engineering practices by designing a normalized MySQL (OLTP) relational database
+schema.
+Managed secure data flow, ingestion, and state querying via scalable RESTful API routes.
+Engineered a scalable content-based recommendation engine utilizing Python, Pandas, and Scikit-Learn.
+Deployed Cosine Similarity algorithms processing tens of thousands of user preferences to deliver highly
+personalized suggestions efficiently.
+Anime and Movie Recommendation Systems
+Engineered a Weather Prediction Model employing advanced regression algorithms, achieving a 92% accuracy
+(R2 Score) on a continuous historical dataset of 10,000+ records.
+Optimized data preprocessing workflows using Pandas and Scikit-Learn to clean and normalize meteorological
+data, effectively reducing model training time by 20%.
