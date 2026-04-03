@@ -1,39 +1,52 @@
-document-addEventListener('DOMContentLoaded', () => {
-    const navItems = document.querySelectorAll('.nav-item');
-    const sections = document.querySelectorAll('section');
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    // Smooth scroll for nav links and dots
+    const clickHandler = (e) => {
+        e.preventDefault();
+        const targetId = e.currentTarget.getAttribute('href') || '#' + e.currentTarget.getAttribute('data-target');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
-    // Smooth Scrolling for Navigation
-    navItems.forEach(anchor => {
-        anchor-addEventListener('click', function (e) {
-            e-preventDefault();
-            const targetId = this.getAttribute('href');
-            document.querySelector(targetId).scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
+    // Attach to dots
+    dots.forEach(dot => {
+        dot.addEventListener('click', clickHandler);
     });
 
-    // Active Link Highlighting on Scroll
-    const highlightNav = () => {
-        let currentPos = window.scrollY + 150;
+    // Attach to navbar links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', clickHandler);
+    });
 
-        sections.forEach(section => {
-            let sectionTop = section.offsetTop;
-            let sectionHeight = section.offsetHeight;
-            let sectionId = section.getAttribute('id');
+    // Intersection Observer to update active dot
+    const observerOptions = {
+        root: document.querySelector('.slider-container'),
+        threshold: 0.5 // Trigger when 50% of the slide is visible
+    };
 
-            if (currentPos >= sectionTop && currentPos < sectionTop + sectionHeight) {
-                navItems.forEach(item => {
-                    item.classList.remove('active');
-                    if (item.getAttribute('href') === `#${sectionId}`) {
-                        item.classList.add('active');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Find matching dot and activate
+                const currentId = entry.target.id;
+                
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if(dot.getAttribute('data-target') === currentId) {
+                        dot.classList.add('active');
                     }
                 });
             }
         });
-    };
+    }, observerOptions);
 
-    window-addEventListener('scroll', highlightNav);
-    highlightNav(); // Initialize on load
+    slides.forEach(slide => {
+        observer.observe(slide);
+    });
 });
