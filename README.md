@@ -5,7 +5,7 @@ Welcome to the repository for my personal portfolio website! This project is a f
 
 It features a modern **Glassmorphism** aesthetic, smooth animations, and a mobile-first architecture.
 
-🔗 **[View Live Demo](https://ajaybora002.github.io)**
+🔗 **[View Live Demo](https://ajay-bora-portfolio.vercel.app/)**
 
 ---
 
@@ -45,7 +45,7 @@ You only need a web browser (like Chrome, Edge, or Firefox) and a text editor (l
 **Option A (Using Git):**
 Open your terminal/command prompt and run:
 ```bash
-git clone [https://github.com/AjayBora002/AjayBora002.github.io.git](https://github.com/AjayBora002/AjayBora002.github.io.git)
+git clone https://github.com/AjayBora002/AjayBora_portfolio.git
 Option B (No Git):
 
 Click the green "Code" button at the top right of this GitHub page.
