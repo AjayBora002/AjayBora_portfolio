@@ -81,7 +81,23 @@
             <a data-target="certifications">Certifications</a>
             <a data-target="contact">Contact</a>
         </div>
+        <!-- Hamburger (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&times;</button>
+        <nav class="mobile-nav">
+            <a data-target="home" class="mobile-nav-link active">Home</a>
+            <a data-target="projects" class="mobile-nav-link">Projects</a>
+            <a data-target="hackathons" class="mobile-nav-link">Hackathons</a>
+            <a data-target="certifications" class="mobile-nav-link">Certifications</a>
+            <a data-target="contact" class="mobile-nav-link">Contact</a>
+        </nav>
+    </div>
 
     <main>
         <!-- HOME TAB -->

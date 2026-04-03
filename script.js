@@ -19,40 +19,76 @@ function sendMail(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Navigation ---
+    // --- Navigation Logic ---
     const tabs = document.querySelectorAll('.tab-pane');
     const navLinks = document.querySelectorAll('.nav-links a');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function switchTab(targetId) {
+        // Hide all tabs
+        tabs.forEach(tab => tab.classList.remove('active'));
+        
+        // Remove active class from all links (desktop & mobile)
+        navLinks.forEach(link => link.classList.remove('active'));
+        mobileNavLinks.forEach(link => link.classList.remove('active'));
+        
+        // Show target tab
+        const targetTab = document.getElementById(targetId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+            
+            // Set active class on corresponding links
+            document.querySelectorAll(`[data-target="${targetId}"]`).forEach(link => {
+                link.classList.add('active');
+            });
+        }
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Close mobile menu if open
+        if (mobileMenu) {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Unlock scroll
+        }
+
+        // Re-trigger scroll reveal
+        observeElements();
+    }
     
+    // Desktop Nav Listeners
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            // Get the target tab ID
-            const targetId = link.getAttribute('data-target');
-            
-            // Hide all tabs and remove active class from all links
-            tabs.forEach(tab => tab.classList.remove('active'));
-            navLinks.forEach(nav => nav.classList.remove('active'));
-            
-            // Show the target tab and highlight clicked link
-            const targetTab = document.getElementById(targetId);
-            if (targetTab) {
-                targetTab.classList.add('active');
-                link.classList.add('active');
-            }
-            
-            // Scroll gracefully to top when changing tabs
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-
-            // Re-trigger scroll reveal for the new tab
-            if (typeof observeElements === 'function') {
-                observeElements();
-            }
+            switchTab(link.getAttribute('data-target'));
         });
     });
+
+    // Mobile Nav Listeners
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchTab(link.getAttribute('data-target'));
+        });
+    });
+
+    // Hamburger Toggle
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Unlock scroll
+        });
+    }
 
     // --- Dynamic Typing Effect ---
     const heroRole = document.querySelector('.hero-role');
@@ -68,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(typeWriter, 70); 
             }
         }
-        // Start typing after a short delay
         setTimeout(typeWriter, 500);
     }
 
@@ -87,13 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     function observeElements() {
-        const elementsToReveal = document.querySelectorAll('.skill-group, .exp-item, .project-card, .hackathon-card, .cert-item, .section-title');
+        const elementsToReveal = document.querySelectorAll('.skill-group, .exp-item, .card, .section-title');
         elementsToReveal.forEach(el => {
             el.classList.add('reveal');
             observer.observe(el);
         });
     }
 
-    // Initial observation
     observeElements();
 });
