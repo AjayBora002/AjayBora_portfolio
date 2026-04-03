@@ -93,8 +93,34 @@ body {
 .skills-card { grid-column: span 4; grid-row: span 2; }
 .experience-card { grid-column: span 8; grid-row: span 3; }
 .education-card { grid-column: span 4; grid-row: span 1; }
+.achievements-card { grid-column: span 4; grid-row: span 3; }
 .projects-card { grid-column: span 12; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; border: none; background: transparent; padding: 0; }
 .project-item { grid-column: auto !important; height: 100%; }
+
+/* --- ACHIEVEMENTS STYLES --- */
+.achieve-item {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 2px solid var(--accent-cyan);
+    transition: var(--transition-fast);
+}
+
+.achieve-item:hover {
+    transform: translateX(5px);
+}
+
+.achieve-title {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.3;
+}
+
+.achieve-org {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
 
 /* --- HERO CARD STYLES --- */
 .hero-image { flex: 0 0 240px; }
