@@ -1,3 +1,22 @@
+// ── CONTACT FORM: mailto handler ────────────
+function sendMail(e) {
+    e.preventDefault();
+    const name    = document.getElementById('cf-name').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+
+    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+    const body    = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`);
+    const mailTo  = `mailto:boraajay26@gmail.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailTo;
+
+    // Visual feedback
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = 'Opening Email Client...';
+    setTimeout(() => { btn.textContent = 'SEND MESSAGE'; }, 3000);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- Navigation ---
