@@ -14,181 +14,196 @@
     <nav class="navbar">
         <div class="logo">AJAY BORA</div>
         <div class="nav-links">
-            <a href="#s1">Intro</a>
-            <a href="#s2">Experience</a>
-            <a href="#s4">Projects</a>
-            <a href="#s6">Hackathons</a>
-            <a href="#s7">Certifications</a>
+            <a data-target="home" class="active">Home</a>
+            <a data-target="projects">Projects</a>
+            <a data-target="hackathons">Hackathons</a>
+            <a data-target="certifications">Certifications</a>
         </div>
     </nav>
 
-    <!-- RIGHT PAGINATION DOTS -->
-    <div class="pagination">
-        <div class="dot active" data-target="s1"></div>
-        <div class="dot" data-target="s2"></div>
-        <div class="dot" data-target="s3"></div>
-        <div class="dot" data-target="s4"></div>
-        <div class="dot" data-target="s5"></div>
-        <div class="dot" data-target="s6"></div>
-        <div class="dot" data-target="s7"></div>
-    </div>
-
-    <!-- MAIN SLIDER -->
-    <main class="slider-container">
-
-        <!-- SLIDE 1: INTRO -->
-        <section class="slide" id="s1">
-            <div class="slide-content">
-                <h1 class="slide-title">Hello.</h1>
-                <p class="slide-desc">
-                    I'm Ajay Bora, an analytical and results-driven Data Science and AI/ML undergraduate. 
-                    I build scalable data pipelines, predictive models, and intelligent AI systems.
-                </p>
-                <div class="mini-thumb">
-                    <!-- Thumbnail of profile or code -->
-                    <img src="assets/profile.jpg" alt="Profile" onerror="this.style.display='none'">
+    <main>
+        <!-- HOME TAB -->
+        <div id="home" class="tab-pane active">
+            <!-- Bio Section -->
+            <div class="hero-layout">
+                <div>
+                    <h1 class="tab-title">Intelligent<br>Systems</h1>
+                    <p class="slide-desc">
+                        I'm <strong>Ajay Bora</strong>, an analytical and results-driven Data Science and AI/ML undergraduate. 
+                        I build scalable data pipelines, predictive models, and sophisticated Generative AI systems.
+                    </p>
+                    <a href="assets/Ajay_Bora_Resume.pdf" target="_blank" class="action-link">VIEW RESUME <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <a href="assets/Ajay_Bora_Resume.pdf" target="_blank" class="action-link">VIEW RESUME <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="slide-visual">
                 <div class="tilt-card">
-                    <img src="assets/profile.jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80'">
+                    <div class="tilt-card-inner">
+                        <img src="assets/profile.jpg" alt="Profile" onerror="this.src='https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80'">
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- SLIDE 2: EXP - INFOSYS -->
-        <section class="slide" id="s2">
-            <div class="slide-content">
-                <h1 class="slide-title">Climate<br>Scope</h1>
-                <p class="slide-desc">
-                    Data Visualization Internship at <strong>Infosys</strong>. Designed and orchestrated an automated ETL pipeline processing 300,000+ unstructured global weather records for real-time anomaly detection.
-                </p>
+            <!-- Experience Section -->
+            <h2 class="section-title">Professional Experience</h2>
+
+            <div class="exp-item">
+                <span class="exp-timeline">Feb 2026 - Present</span>
+                <h3>Infosys</h3>
+                <h4>Data Visualization Intern</h4>
+                <p>Designed and orchestrated an automated ETL pipeline processing 300,000+ unstructured global weather records for real-time anomaly detection. Developed the "Climate Scope" dashboard.</p>
+                <br>
                 <a href="https://github.com/AjayBora002/Climate_Scope" target="_blank" class="action-link">OPEN PROJECT <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="slide-visual">
-                <div class="tilt-card">
-                    <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=800&q=80" alt="Climate Dashboard">
-                </div>
-            </div>
-        </section>
 
-        <!-- SLIDE 3: EXP - YBI -->
-        <section class="slide" id="s3">
-            <div class="slide-content">
-                <h1 class="slide-title">Weather<br>Prediction</h1>
-                <p class="slide-desc">
-                    Data Science Internship at <strong>YBI Foundation</strong>. Constructed a predictive model using advanced regression algorithms achieving 92% R2 accuracy. Handled massive meteorological datasets via Pandas.
-                </p>
+            <div class="exp-item">
+                <span class="exp-timeline">Jan 2025 – March 2025</span>
+                <h3>YBI Foundation</h3>
+                <h4>Data Science Intern</h4>
+                <p>Constructed a predictive model using advanced regression algorithms achieving 92% R2 accuracy. Handled massive meteorological datasets via Pandas.</p>
+                <br>
                 <a href="https://github.com/AjayBora002/Weather-Prediction" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="slide-visual">
-                <div class="tilt-card">
-                    <img src="https://images.unsplash.com/photo-1541119638723-c51cbe2262aa?auto=format&fit=crop&w=800&q=80" alt="Weather Tech">
-                </div>
-            </div>
-        </section>
 
-        <!-- SLIDE 4: PROJ - POSHAN PAHAD -->
-        <section class="slide" id="s4">
-            <div class="slide-content">
-                <h1 class="slide-title">Poshan<br>Pahad</h1>
-                <p class="slide-desc">
-                    GenAI conversational assistant to provide hyper-localized nutritional and agricultural guidance for hilly regions. Built natively for rural optimization.
-                </p>
-                <a href="https://github.com/AjayBora002/Poshan-Pahad" target="_blank" class="action-link">OPEN CASE STUDY <i class="fas fa-arrow-right"></i></a>
+            <div class="exp-item">
+                <span class="exp-timeline">Aug 2025 – Jan 2026</span>
+                <h3>Google</h3>
+                <h4>Student Ambassador</h4>
+                <p>Spearheaded AI awareness campaigns focusing on Gemini and Large Language Models. Organized workshops on Generative AI systems for student communities.</p>
             </div>
-            <div class="slide-visual">
-                <div class="tilt-card">
-                    <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80" alt="Hills Nature">
-                </div>
-            </div>
-        </section>
+        </div>
 
-        <!-- SLIDE 5: PROJ - LIBRARY -->
-        <section class="slide" id="s5">
-            <div class="slide-content">
-                <h1 class="slide-title">Library<br>Mgmt</h1>
-                <p class="slide-desc">
-                    Full-stack inventory system with a Python/Flask backend and React frontend. Features high-security authentication and complex MySQL schema relationships.
-                </p>
-                <a href="https://github.com/AjayBora002/Library_Management" target="_blank" class="action-link">OPEN PROJECT <i class="fas fa-arrow-right"></i></a>
-            </div>
-            <div class="slide-visual">
-                <div class="tilt-card">
-                    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80" alt="Library">
+        <!-- PROJECTS TAB -->
+        <div id="projects" class="tab-pane">
+            <h1 class="tab-title">Projects.</h1>
+            <p style="margin-bottom: 40px; color: var(--text-muted);">A comprehensive collection of my technical work in ML, Data Science, and Full-Stack Development.</p>
+            
+            <div class="content-grid">
+                <!-- Project 1 -->
+                <div class="card">
+                    <i class="fas fa-leaf card-icon"></i>
+                    <h3>Poshan Pahad AI</h3>
+                    <p>GenAI conversational assistant providing hyper-localized nutritional and agricultural guidance for hilly regions.</p>
+                    <a href="https://github.com/AjayBora002/Poshan-Pahad" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </div>
-        </section>
 
-        <!-- SLIDE 6: HACKATHONS -->
-        <section class="slide" id="s6">
-            <div class="slide-content">
-                <h1 class="slide-title">Trophies</h1>
-                <p class="slide-desc" style="margin-bottom: 20px;">
-                    Competitive problem solving under intense time constraints.
-                </p>
-                
-                <div class="grouped-list">
-                    <div class="grouped-item">
-                        <h4>KDSH 2026</h4>
-                        <p>IIT Kharagpur Data Science Hackathon handling massive predictive modeling challenges.</p>
-                        <a href="assets/KDSH_2026_Ajay_Bora.pdf" target="_blank" class="action-link" style="font-size:0.7rem; margin-top:5px;">VIEW CERTIFICATE</a>
-                    </div>
-                    <div class="grouped-item">
-                        <h4>Haxplore 2026</h4>
-                        <p>IIT-BHU CodeFest. Built innovative fintech solutions.</p>
-                        <a href="assets/haxplore_iitbhu.pdf" target="_blank" class="action-link" style="font-size:0.7rem; margin-top:5px;">VIEW CERTIFICATE</a>
-                    </div>
-                    <div class="grouped-item">
-                        <h4>Serve-Smart Hackathon</h4>
-                        <p>IIT-BHU Jagriti. Mission-driven social impact applications.</p>
-                        <a href="assets/serve_smart_hackathon.pdf" target="_blank" class="action-link" style="font-size:0.7rem; margin-top:5px;">VIEW CERTIFICATE</a>
-                    </div>
+                <!-- Project 2 -->
+                <div class="card">
+                    <i class="fas fa-book card-icon"></i>
+                    <h3>Library Management</h3>
+                    <p>Full-stack inventory system with a Python/Flask backend and React frontend. High-security authentication and MySQL schema.</p>
+                    <a href="https://github.com/AjayBora002/Library_Management" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </div>
-            <div class="slide-visual">
-                <div class="tilt-card">
-                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" alt="Hackathon Code">
-                </div>
-            </div>
-        </section>
 
-        <!-- SLIDE 7: CERTIFICATIONS -->
-        <section class="slide" id="s7">
-            <div class="slide-content">
-                <h1 class="slide-title">Certify</h1>
-                <p class="slide-desc" style="margin-bottom: 20px;">
-                    Continuous industry validation and agentic framework integrations.
-                </p>
-                
-                <div class="grouped-list">
-                    <div class="grouped-item">
-                        <h4>AI Agents Specialization</h4>
-                        <p>DeepLearning.AI. Advanced orchestration of LLMs with specialized AI architectures.</p>
-                    </div>
-                    <div class="grouped-item">
-                        <h4>J.P. Morgan SWE Simulation</h4>
-                        <p>Advanced backend development interfacing with financial stock data feeds via Spring Boot.</p>
-                        <a href="assets/jpmc_cert.pdf" target="_blank" class="action-link" style="font-size:0.7rem; margin-top:5px;">VIEW CERTIFICATE</a>
-                    </div>
-                    <div class="grouped-item">
-                        <h4>Deloitte Data & Tech Simulations</h4>
-                        <p>Quality assessments, forensic insights, and complex software logic test processing.</p>
-                        <div style="display:flex; gap:10px; margin-top:5px;">
-                            <a href="assets/deloitte_data_cert.pdf" target="_blank" class="action-link" style="font-size:0.7rem;">DATA CERT</a>
-                            <a href="assets/deloitte_tech_cert.pdf" target="_blank" class="action-link" style="font-size:0.7rem;">TECH CERT</a>
-                        </div>
-                    </div>
+                <!-- Project 3 -->
+                <div class="card">
+                    <i class="fas fa-microphone-alt card-icon"></i>
+                    <h3>Jarvis Voice Assistant</h3>
+                    <p>Python-based AI using Google Gemini API for tasks like web search, weather, reminders, and AI chatting.</p>
+                    <a href="https://github.com/AjayBora002/Voice-Assistant" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </div>
-            <div class="slide-visual">
-                <div class="tilt-card">
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Certifications">
-                </div>
-            </div>
-        </section>
 
+                <!-- Project 4 -->
+                <div class="card">
+                    <i class="fas fa-film card-icon"></i>
+                    <h3>Movie Recommender</h3>
+                    <p>Interactive Movie Recommendation System delivering personalized suggestions using content-based filtering techniques.</p>
+                    <a href="https://github.com/AjayBora002/movie_recommendation" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="card">
+                    <i class="fas fa-tv card-icon"></i>
+                    <h3>Anime Recommender</h3>
+                    <p>Python-based system that helps users discover new anime titles using collaborative filtering techniques.</p>
+                    <a href="https://github.com/AjayBora002/anime_recommendation" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="card">
+                    <i class="fas fa-list-ul card-icon"></i>
+                    <h3>Flask To-Do App</h3>
+                    <p>A robust, full-stack To-Do List application built with Flask and SQLite. Features user authentication and task prioritization.</p>
+                    <a href="https://github.com/AjayBora002/flask-todo-list" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="card">
+                    <i class="fas fa-address-card card-icon"></i>
+                    <h3>AjayBora Portfolio</h3>
+                    <p>My personal portfolio SPA featuring modern aesthetics, CSS animations, and tabbed logic processing.</p>
+                    <a href="https://github.com/AjayBora002/AjayBora_portfolio" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="card">
+                    <i class="fas fa-file-pdf card-icon"></i>
+                    <h3>CertiSort <span style="font-size: 0.8rem; color: #7A7129;">(In Progress)</span></h3>
+                    <p>AI tool designed to automatically parse, rename, and organize certificate PDFs based on optical text content.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HACKATHONS TAB -->
+        <div id="hackathons" class="tab-pane">
+            <h1 class="tab-title">Hackathons.</h1>
+            <p style="margin-bottom: 40px; color: var(--text-muted);">Competitive problem solving and building technological solutions under intense time constraints.</p>
+
+            <div class="content-grid">
+                <div class="card">
+                    <i class="fas fa-trophy card-icon" style="color: #7A7129;"></i>
+                    <h3>KDSH 2026</h3>
+                    <p>IIT Kharagpur. One of India's largest data science hackathons, tackling real-world predictive modeling and complicated data challenges.</p>
+                    <a href="assets/KDSH_2026_Ajay_Bora.pdf" target="_blank" class="action-link">VIEW CERTIFICATE <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-code-branch card-icon" style="color: #7A7129;"></i>
+                    <h3>Haxplore 2026</h3>
+                    <p>IIT-BHU (CodeFest'26). Competed in the flagship hackathon, building innovative fintech and software solutions.</p>
+                    <a href="assets/haxplore_iitbhu.pdf" target="_blank" class="action-link">VIEW CERTIFICATE <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-people-carry card-icon" style="color: #7A7129;"></i>
+                    <h3>Serve-Smart Hackathon</h3>
+                    <p>IIT-BHU (Jagriti 2026). Developed mission-driven applications focused on social impact and core service optimizations.</p>
+                    <a href="assets/serve_smart_hackathon.pdf" target="_blank" class="action-link">VIEW CERTIFICATE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CERTIFICATIONS TAB -->
+        <div id="certifications" class="tab-pane">
+            <h1 class="tab-title">Certifications.</h1>
+            <p style="margin-bottom: 40px; color: var(--text-muted);">Job simulations and professional certifications driving my continuous industry growth.</p>
+
+            <div class="content-grid">
+                <div class="card">
+                    <img src="assets/ai_agents_cert.jpg" alt="AI Cert" style="width: 100px; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>AI Agents Specialization</h3>
+                    <p>DeepLearning.AI framework mastery. Learned agentic workflows and orchestraing LLMs using LangChain.</p>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-building card-icon"></i>
+                    <h3>J.P. Morgan</h3>
+                    <p>Software Engineering Simulation. Advanced backend development interfacing with stock feeds via Spring Boot and Java.</p>
+                    <a href="assets/jpmc_cert.pdf" target="_blank" class="action-link">VIEW CERTIFICATE <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-briefcase card-icon"></i>
+                    <h3>Deloitte Data Analytics</h3>
+                    <p>Simulated analytical consulting. Performed data quality assessments, forensic insights, and Tableau visualizations.</p>
+                    <a href="assets/deloitte_data_cert.pdf" target="_blank" class="action-link">VIEW CERTIFICATE <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-laptop-code card-icon"></i>
+                    <h3>Deloitte Technology</h3>
+                    <p>Technology Job Simulation. Platform engineering, unit testing software logic, and JSON data handling.</p>
+                    <a href="assets/deloitte_tech_cert.pdf" target="_blank" class="action-link">VIEW CERTIFICATE <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="script.js"></script>

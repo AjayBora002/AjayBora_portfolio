@@ -1,25 +1,25 @@
-/* --- SLATE BLUE SLIDER DESIGN SYSTEM --- */
+/* --- SLATE BLUE TABBED CONFIGURATION --- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;600&display=swap');
 
 :root {
     --bg-slate: #4C6A7B;
-    --text-light: #F7EFE4; /* Mild off-white / light cream */
+    --text-light: #F7EFE4;
     --text-muted: rgba(247, 239, 228, 0.7);
-    --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition: all 0.3s ease;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--bg-slate);
     color: var(--text-light);
     font-family: 'Inter', sans-serif;
-    overflow: hidden; /* We handle scrolling in the main container */
+    overflow-y: scroll; /* Back to normal scrolling */
+    min-height: 100vh;
 }
 
 /* Typography */
@@ -33,15 +33,18 @@ h1, h2, h3 {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 40px 5%;
+    padding: 30px 10%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    background: rgba(76, 106, 123, 0.95); /* matching bg-slate */
+    backdrop-filter: blur(10px);
     text-transform: uppercase;
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 2px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .nav-links {
@@ -50,91 +53,71 @@ h1, h2, h3 {
 }
 
 .nav-links a {
-    color: var(--text-light);
+    color: var(--text-muted);
     text-decoration: none;
     transition: var(--transition);
+    cursor: pointer;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
     color: white;
 }
 
-/* SLIDER WRAPPER */
-.slider-container {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
+/* TAB CONTAINER */
+main {
+    padding: 120px 10% 50px; /* Space for navbar */
+    min-height: 100vh;
 }
 
-/* INDIVIDUAL SLIDE */
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADER STYLES INSIDE TABS */
+.tab-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    letter-spacing: -1px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 60px 0 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+
+/* HERO GRID (For HOME Bio) */
+.hero-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 40px;
     align-items: center;
-    padding: 0 8% 0 10%;
+    margin-bottom: 80px;
 }
 
-.slide.active-slide {
-    opacity: 1;
-    visibility: visible;
-    z-index: 10;
-    transform: translateY(0);
-}
-
-/* LEFT CONTENT (TEXT) */
-.slide-content {
-    max-width: 500px;
-    z-index: 10;
-}
-
-.slide-title {
-    font-size: 6rem;
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 30px;
-    letter-spacing: -2px;
-}
-
-.slide-desc {
+.hero-layout .slide-desc {
     font-size: 1.1rem;
     line-height: 1.6;
     color: var(--text-light);
-    margin-bottom: 40px;
+    margin: 20px 0;
 }
 
-/* List Items / Grouped content within a slide */
-.grouped-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.grouped-item h4 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.grouped-item p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-}
-
-/* Action Link */
 .action-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 15px;
     color: var(--text-light);
@@ -148,101 +131,120 @@ h1, h2, h3 {
 
 .action-link:hover {
     color: white;
-    gap: 20px; /* Slight arrow moving effect */
+    gap: 20px;
 }
 
-/* Mini Thumbnail */
-.mini-thumb {
-    width: 250px;
-    aspect-ratio: 16/9;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    margin-bottom: 30px;
-    overflow: hidden;
+/* PERSPECTIVE IMAGE STYLES */
+.tilt-card {
+    width: 100%;
+    aspect-ratio: 4/3;
+    perspective: 1200px;
 }
-.mini-thumb img {
+
+.tilt-card-inner {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-}
-
-/* RIGHT VISUAL (PERSPECTIVE IMAGE) */
-.slide-visual {
-    perspective: 1200px; /* The 3D space */
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 45%;
-    height: 70%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* The tilted image wrapper */
-.tilt-card {
-    width: 80%;
-    height: 80%;
-    /* Slanted effect mimicking the image */
-    transform: rotateX(10deg) rotateY(-20deg) rotateZ(5deg);
-    box-shadow: -20px 20px 40px rgba(0, 0, 0, 0.3);
+    transform: rotateX(5deg) rotateY(-15deg) rotateZ(3deg);
+    box-shadow: -15px 15px 30px rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     overflow: hidden;
-    transition: transform 0.8s ease;
+    transition: transform 0.6s ease;
 }
 
-.tilt-card:hover {
-    transform: rotateX(5deg) rotateY(-10deg) rotateZ(2deg);
+.tilt-card-inner:hover {
+    transform: rotateX(2deg) rotateY(-5deg) rotateZ(1deg);
 }
 
-.tilt-card img {
+.tilt-card-inner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-/* SLIDER DOTS PAGINATION */
-.pagination {
-    position: fixed;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
+/* LIST CARDS (For Experience) */
+.exp-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.exp-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.exp-timeline {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.exp-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.exp-item h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+/* PROJECT, HACKATHON, CERT GRIDS */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 25px;
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
 }
 
-.dot {
-    width: 6px;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    transition: var(--transition);
-    cursor: pointer;
+.card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.07);
 }
 
-.dot.active {
-    background: white;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    height: 25px;
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .slide-title { font-size: 4rem; }
-    .slide { grid-template-columns: 1fr; padding: 120px 10% 0; }
-    .slide-visual { 
-        position: relative; 
-        right: 0; 
-        top: 0; 
-        transform: none; 
-        width: 100%; 
-        height: 300px;
-        margin-top: 50px;
-    }
-    .tilt-card { transform: none; width: 100%; height: 100%; }
-    .pagination { display: none; }
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    flex-grow: 1; /* Pushes links to the bottom */
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .hero-layout { grid-template-columns: 1fr; }
+    .tilt-card-inner { transform: none; }
+    .tab-title { font-size: 3rem; }
+    .navbar { padding: 20px 5%; flex-wrap: wrap; }
+    .nav-links { margin-top: 15px; width: 100%; justify-content: center; }
+    main { padding-top: 140px; }
 }
