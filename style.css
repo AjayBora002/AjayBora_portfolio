@@ -90,6 +90,18 @@ main {
     font-weight: 800;
     margin-bottom: 50px;
     letter-spacing: -1px;
+    background: linear-gradient(90deg, var(--text-light) 0%, #B8C5C8 50%, var(--text-light) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
 }
 
 .section-title {
@@ -132,6 +144,7 @@ main {
 .action-link:hover {
     color: white;
     gap: 20px;
+    text-shadow: 0 0 10px rgba(247, 239, 228, 0.4);
 }
 
 /* PERSPECTIVE IMAGE STYLES */
@@ -219,12 +232,20 @@ main {
 .card:hover {
     transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 10px 30px -10px rgba(247, 239, 228, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .card-icon {
     font-size: 2.5rem;
     color: var(--text-muted);
     margin-bottom: 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.card:hover .card-icon {
+    transform: scale(1.15) rotate(5deg);
+    color: var(--text-light);
 }
 
 .card h3 {
