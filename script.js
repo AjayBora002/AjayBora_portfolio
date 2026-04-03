@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const closeBtn = document.getElementById('mobile-menu-close');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const mobileTabBtns = document.querySelectorAll('.mobile-tab-btn');
+
 
     function switchTab(targetId) {
         // Hide all tabs
@@ -72,6 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             switchTab(link.getAttribute('data-target'));
+        });
+    });
+
+    // Mobile Tab Bar Listeners
+    mobileTabBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchTab(btn.getAttribute('data-target'));
         });
     });
 

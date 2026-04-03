@@ -13,7 +13,7 @@ Optimized data preprocessing pipelines using Pandas to clean and normalize meteo
 model training time by 20%.
 Data Visualization Intern(Infosys | Feb 2026 - Present)
 Designed and orchestrated an automated ETL pipeline using Python and Pandas, successfully ingesting,
-cleaning, and preprocessing 300,000+ unstructured global weather records from the Kaggle API.
+cleaning, and preprocessing 132k+ unstructured global weather records from the Kaggle API.
 Conducted rigorous statistical analysis of large datasets to extract seasonal trends, determine variable
 correlations, and identify 99th-percentile anomalous extreme weather events globally.
 Developed an interactive dashboard using Streamlit and Plotly, engineering dynamic choropleth maps and

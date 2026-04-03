@@ -443,6 +443,58 @@ main {
 
 .floating-resume:hover { transform: scale(1.12) rotate(12deg); background: white; }
 
+/* ── MOBILE TAB BAR ────────────────────────── */
+.mobile-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(44, 67, 85, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: none; /* Hidden on desktop */
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    z-index: 1500;
+    padding: 0 10px;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+}
+
+.mobile-tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    cursor: pointer;
+    width: 20%;
+    padding: 10px 0;
+}
+
+.mobile-tab-btn i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.mobile-tab-btn.active {
+    color: var(--accent);
+}
+
+.mobile-tab-btn.active i {
+    transform: translateY(-3px) scale(1.1);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+
 /* ── RESPONSIVE ─────────────────────────────── */
 
 .hamburger {
@@ -526,6 +578,9 @@ main {
     .tab-title { font-size: 3rem; }
     .section-title { font-size: 1.8rem; }
     .skills-container { grid-template-columns: 1fr 1fr; }
+    .mobile-tab-bar { display: flex; }
+    .global-footer { padding-bottom: 100px; } /* Space for tab bar */
+    .floating-resume { bottom: 90px; right: 20px; } /* Move above tab bar */
 }
 
 @media (max-width: 480px) {
@@ -534,5 +589,6 @@ main {
     .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
     .skills-container { grid-template-columns: 1fr; }
     .global-footer { flex-direction: column; gap: 20px; text-align: center; }
-    .floating-resume { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 1.2rem; }
+    .floating-resume { bottom: 85px; right: 15px; width: 45px; height: 45px; font-size: 1.1rem; }
+    .mobile-tab-btn span { font-size: 0.55rem; letter-spacing: 0.5px; }
 }
