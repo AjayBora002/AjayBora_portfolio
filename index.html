@@ -56,6 +56,15 @@
     }
     </script>
 
+    <!-- Google Analytics (GA4) - Placeholder G-XXXXXXXXXX -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -180,10 +189,26 @@
             <div class="content-grid">
                 <!-- Project 1 -->
                 <div class="card">
-                    <i class="fas fa-leaf card-icon"></i>
+                    <img src="assets/projects/poshan_pahad.png" alt="Poshan Pahad AI" class="card-img">
                     <h3>Poshan Pahad AI</h3>
                     <p>GenAI conversational assistant providing hyper-localized nutritional and agricultural guidance for hilly regions.</p>
                     <a href="https://github.com/AjayBora002/Poshan-Pahad" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project: Climate Dashboard (Featured) -->
+                <div class="card">
+                    <img src="assets/projects/climate_dash.png" alt="Climate Scope" class="card-img">
+                    <h3>Climate Scope Dash</h3>
+                    <p>Comprehensive data platform analyzing global temperature anomalies and weather patterns using BigQuery & Python.</p>
+                    <a href="https://github.com/AjayBora002/Climate-Scope" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Project: Traffic Analytics -->
+                <div class="card">
+                    <img src="assets/projects/traffic_analytics.png" alt="Traffic AI" class="card-img">
+                    <h3>Smart Traffic AI</h3>
+                    <p>Real-time traffic flow optimization using computer vision (YOLO) and predictive analytics for urban planning.</p>
+                    <a href="https://github.com/AjayBora002" target="_blank" class="action-link">OPEN REPO <i class="fas fa-arrow-right"></i></a>
                 </div>
 
                 <!-- Project 2 -->
