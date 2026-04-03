@@ -2,7 +2,7 @@
    AJAY BORA PORTFOLIO — ENHANCED EDITION
    Same structure, massively elevated aesthetics
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 :root {
     --bg-slate:       #3a5566;
@@ -20,6 +20,8 @@
     --transition:     all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     --shadow-card:    0 8px 32px rgba(0, 0, 0, 0.25);
     --shadow-glow:    0 0 40px rgba(168, 197, 216, 0.12);
+    --font-heading:   'Outfit', sans-serif;
+    --font-body:      'Plus Jakarta Sans', sans-serif;
 }
 
 /* ── RESET ─────────────────────────────────── */
@@ -37,8 +39,11 @@ body {
         radial-gradient(ellipse 60% 50% at 80% 80%, rgba(201, 168, 76, 0.07) 0%, transparent 55%),
         radial-gradient(ellipse 50% 40% at 60% 40%, rgba(44, 67, 85, 0.5) 0%, transparent 50%);
     color: var(--text-light);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
     min-height: 100vh;
 }
@@ -55,7 +60,11 @@ body::before {
 }
 
 /* ── TYPOGRAPHY ─────────────────────────────── */
-h1, h2, h3 { font-family: 'Playfair Display', serif; }
+h1, h2, h3, h4, h5, h6 { 
+    font-family: var(--font-heading); 
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+}
 
 /* ── NAVBAR ─────────────────────────────────── */
 .navbar {
@@ -78,10 +87,10 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 
 .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: 4px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 5px;
     background: linear-gradient(135deg, var(--text-light) 0%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -138,11 +147,12 @@ main {
 
 /* ── HEADINGS ───────────────────────────────── */
 .tab-title {
-    font-size: 4.8rem;
-    font-weight: 800;
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+    font-weight: 900;
     margin-bottom: 50px;
-    letter-spacing: -2px;
-    line-height: 1.05;
+    letter-spacing: -3px;
+    line-height: 0.95;
+    text-transform: capitalize;
 }
 
 #home .tab-title {
@@ -190,24 +200,24 @@ main {
 
 .hero-greeting {
     display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
     color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
+    letter-spacing: 4.5px;
+    margin-bottom: 12px;
 }
 
 .hero-role {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 400;
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 500;
     color: var(--accent);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     margin-top: -30px;
-    margin-bottom: 10px;
-    opacity: 0.85;
+    margin-bottom: 15px;
+    opacity: 0.9;
 }
 
 .hero-role::after {
@@ -351,8 +361,8 @@ main {
 
 .stat { display: flex; flex-direction: column; gap: 3px; }
 .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem; font-weight: 800; line-height: 1;
+    font-family: var(--font-heading);
+    font-size: 2rem; font-weight: 900; line-height: 1;
     background: linear-gradient(135deg, white 0%, var(--accent) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
@@ -555,13 +565,14 @@ main {
 }
 
 .mobile-nav-link {
-    font-size: 2rem;
-    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
     color: var(--text-muted);
     text-decoration: none;
     transition: var(--transition);
     text-transform: capitalize;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .mobile-nav-link.active { color: var(--accent); }
