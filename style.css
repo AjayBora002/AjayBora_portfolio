@@ -90,18 +90,6 @@ main {
     font-weight: 800;
     margin-bottom: 50px;
     letter-spacing: -1px;
-    background: linear-gradient(90deg, var(--text-light) 0%, #B8C5C8 50%, var(--text-light) 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 4s linear infinite;
-}
-
-@keyframes shine {
-    to {
-        background-position: 200% center;
-    }
 }
 
 .section-title {
