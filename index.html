@@ -6,253 +6,232 @@
     <title>Ajay Bora | Data Science & AI/ML Portfolio</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- SEO & Search Engine Optimization Tags -->
-    <meta name="google-site-verification" content="uuty1JGUvFF6MZMepSqZLKye2eVqjaPPJBS28ZB42H0" />
-    <meta name="description" content="Portfolio of Ajay Bora, a B.Tech student specializing in AI/ML and Data Science. Hands-on experience with Python, SQL, and predictive modeling.">
-    <meta name="keywords" content="Ajay Bora, Data Science, AI/ML, Machine Learning, Python, SQL, Portfolio, B.Tech AI/ML">
-    <meta name="author" content="Ajay Bora">
-    <link rel="canonical" href="https://ajaybora002.github.io/">
-
-    <!-- Open Graph (Facebook / LinkedIn) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ajaybora002.github.io/">
-    <meta property="og:title" content="Ajay Bora | AI/ML & Data Science">
-    <meta property="og:description" content="Analytical Data Science & AI/ML enthusiast building scalable data pipelines and intelligent systems.">
-    <meta property="og:image" content="https://ajaybora002.github.io/assets/profile.jpg">
-
-    <!-- Vercel Web Analytics -->
-    <script defer src="/_vercel/insights/script.js"></script>
-
-    <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ajaybora002.github.io/">
-    <meta property="twitter:title" content="Ajay Bora | AI/ML & Data Science">
-    <meta property="twitter:description" content="Analytical Data Science & AI/ML enthusiast building scalable data pipelines and intelligent systems.">
-    <meta property="twitter:image" content="https://ajaybora002.github.io/assets/profile.jpg">
-
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Link to external CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Vercel Web Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="logo">AJAY<span>BORA</span></div>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="nav-links">
+            <a href="#experience" class="nav-item">Experience</a>
+            <a href="#projects" class="nav-item">Projects</a>
+            <a href="#hackathons" class="nav-item">Hackathons</a>
+            <a href="#job-simulations" class="nav-item">Job Simulations</a>
+        </div>
+        <div class="contact-btn">
+            <a href="mailto:boraajay26@gmail.com" class="btn-icon"><i class="fas fa-envelope"></i></a>
         </div>
     </nav>
 
-    <main class="bento-container">
-        <!-- HERO CARD (Span 8) -->
-        <section id="home" class="bento-card hero-card">
-            <div class="hero-image">
-                <img src="assets/profile.jpg" alt="Ajay Bora" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=Ajay+Bora&background=0D8ABC&color=fff'"> 
-            </div>
+    <main>
+        <!-- HERO / HOME SECTION -->
+        <section id="home">
             <div class="hero-content">
-                <span class="badge">Available for opportunities</span>
-                <h1>Hi, I'm <span class="gradient-text">Ajay Bora</span></h1>
-                <p class="hero-subtitle">B.Tech (AI/ML) & Data Science Enthusiast</p>
+                <span class="badge">Open for Internship Opportunities</span>
+                <h1>Hi, I'm <span class="gradient-text">Ajay-Bora</span></h1>
+                <p class="hero-bio">
+                    Analytical and results-driven <strong>Data Science and AI/ML undergraduate</strong> with hands-on experience in building scalable data pipelines, predictive models, and intelligent systems. Proficient in Python, SQL, BigQuery, and modern machine learning frameworks. Passionate about transforming complex datasets into actionable insights and robust data engineering solutions.
+                </p>
                 <div class="hero-links">
-                    <a href="https://www.linkedin.com/in/ajay-bora-79b5b0340/" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/AjayBora002" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <a href="mailto:boraajay26@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.instagram.com/ajaybora00/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/ajay-bora-79b5b0340/" target="_blank" class="btn-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/AjayBora002" target="_blank" class="btn-icon"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/ajaybora00/" target="_blank" class="btn-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="assets/profile.jpg" alt="Ajay-Bora" class="hero-pic" onerror="this.src='https://ui-avatars.com/api/?name=Ajay+Bora&background=0284c7&color=fff'">
+                <div class="cert-badge-overlay">
+                    <img src="assets/ai_agents_cert.jpg" alt="AI Agents Certification">
+                    <p style="font-size: 0.7rem; margin-top: 5px; font-weight: 600; text-align: center;">AI Agents Specialization</p>
                 </div>
             </div>
         </section>
 
-        <!-- ABOUT CARD (Span 4) -->
-        <section id="about" class="bento-card about-card">
-            <h2 class="card-title">About Me</h2>
-            <div class="card-content">
-                <p>Analytical and results-driven <strong>Data Science & AI/ML undergraduate</strong> with hands-on experience building scalable data pipelines, predictive models, and intelligent systems.</p>
-                <p>Proficient in <strong>Python, SQL, BigQuery</strong>, and modern machine learning frameworks.</p>
-            </div>
-            <a href="assets/Ajay_Bora_Resume.pdf" download class="btn resume-btn">Resume <i class="fas fa-download"></i></a>
-        </section>
-
-        <!-- EDUCATION (Span 4) -->
-        <section id="education" class="bento-card education-card">
-            <h2 class="card-title">Education</h2>
-            <div class="card-content">
-                <div class="edu-item">
-                    <p class="exp-role">Amrapali University</p>
-                    <p class="exp-company">B.Tech in CSE (AI/ML)</p>
-                    <p class="exp-date">2024 - 2028 (Expected)</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS CARD (Span 4) -->
-        <section id="skills" class="bento-card skills-card">
-            <h2 class="card-title">Tech Stack</h2>
-            <div class="skills-mini-grid">
-                <div class="skill-tag">Python</div>
-                <div class="skill-tag">SQL</div>
-                <div class="skill-tag">Scikit-Learn</div>
-                <div class="skill-tag">Pandas</div>
-                <div class="skill-tag">Plotly</div>
-                <div class="skill-tag">Docker</div>
-                <div class="skill-tag">TensorFlow</div>
-                <div class="skill-tag">BigQuery</div>
-                <div class="skill-tag">AWS</div>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE CARD (Span 8) -->
-        <section id="experience" class="bento-card experience-card">
-            <h2 class="card-title">Experience</h2>
-            <div class="card-content">
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Data Visualization Intern</span>
-                        <span class="exp-date">Feb 2026 – Present</span>
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="skills-container">
+            <h2 class="section-title">My Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">HTML/CSS</span>
                     </div>
-                    <p class="exp-company">Infosys (Springboard)</p>
-                    <p class="exp-desc">Developed **Climate Scope**, an interactive data visualization dashboard processing 300,000+ records using Python and Plotly. Engineered automated ETL pipelines for climate anomaly detection.</p>
                 </div>
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Data Science Intern</span>
-                        <span class="exp-date">Jan 2025 – Mar 2025</span>
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scikit-Learn</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">YOLO</span>
+                        <span class="skill-tag">Matplotlib</span>
                     </div>
-                    <p class="exp-company">YBI Foundation</p>
-                    <p class="exp-desc">Built a **Weather Prediction Model** with 92% R2 accuracy. Optimized preprocessing pipelines using Pandas, reducing training time by 20%.</p>
                 </div>
-                <div class="exp-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Google Student Ambassador</span>
-                        <span class="exp-date">Aug 2025 – Jan 2026</span>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud & Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Google BigQuery</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">ETL Pipelines</span>
                     </div>
-                    <p class="exp-company">Google</p>
-                    <p class="exp-desc">Spearheaded AI awareness campaigns focusing on Gemini and Large Language Models (LLMs).</p>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-bar"></i> Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Streamlit</span>
+                        <span class="skill-tag">Plotly</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">PowerBI</span>
+                        <span class="skill-tag">Seaborn</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ACHIEVEMENTS CARD (Span 4) -->
-        <section id="achievements" class="bento-card achievements-card">
-            <h2 class="card-title">Achievements</h2>
-            <div class="card-content">
-                <div class="achieve-item">
-                    <p class="achieve-title">Kharagpur Data Science Hackathon (KDSH) 2026</p>
-                    <p class="achieve-org">IIT Kharagpur • Participation</p>
-                </div>
-                <div class="achieve-item">
-                    <p class="achieve-title">Haxplore (CodeFest'26)</p>
-                    <p class="achieve-org">IIT-BHU • Participation</p>
-                </div>
-                <div class="achieve-item">
-                    <p class="achieve-title">Serve-Smart Hackathon (Jagriti 2026)</p>
-                    <p class="achieve-org">IIT-BHU • Participation</p>
-                </div>
-                <div class="achieve-item">
-                    <p class="achieve-title">J.P. Morgan SWE Job Simulation</p>
-                    <p class="achieve-org">Forage • Certification</p>
-                </div>
-                <div class="achieve-item">
-                    <p class="achieve-title">Deloitte Data Analytics Simulation</p>
-                    <p class="achieve-org">Forage • Certification</p>
-                </div>
-                <div class="achieve-item">
-                    <p class="achieve-title">AI Agents Certification</p>
-                    <p class="achieve-org">DeepLearning.AI • Specialization</p>
-                </div>
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="content-section">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="card-grid">
+                <!-- Infosys -->
+                <article class="premium-card">
+                    <span class="exp-date">Feb 2026 – Present</span>
+                    <h3 class="exp-company">Infosys (Springboard)</h3>
+                    <p class="exp-role">Data Visualization Intern</p>
+                    <p class="achieve-desc">Developed <strong>Climate Scope</strong>, a massive-scale visualization platform processing 300,000+ climate records. Engineered ETL pipelines for real-time anomaly detection.</p>
+                </article>
+                <!-- YBI -->
+                <article class="premium-card">
+                    <span class="exp-date">Jan 2025 – Mar 2025</span>
+                    <h3 class="exp-company">YBI Foundation</h3>
+                    <p class="exp-role">Data Science Intern</p>
+                    <p class="achieve-desc">Engineered a <strong>Weather Prediction Model</strong> with 92% R2 accuracy. Optimized preprocessing workflows reducing training time by 20%.</p>
+                </article>
+                <!-- Google -->
+                <article class="premium-card">
+                    <span class="exp-date">Aug 2025 – Jan 2026</span>
+                    <h3 class="exp-company">Google</h3>
+                    <p class="exp-role">Student Ambassador</p>
+                    <p class="achieve-desc">Led technical campaigns for Gemini and AI advancements. Organized workshops on Generative AI and LLMs for student communities.</p>
+                </article>
             </div>
         </section>
 
-        <!-- PROJECTS CARD (Span 12) -->
-        <section id="projects" class="projects-card">
-            <!-- Project 1: Poshan-Pahad -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">Poshan Pahad AI</h3>
-                <p class="exp-desc">AI health assistant for hilly regions. Hyper-localized nutritional guidance.</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <a href="https://github.com/AjayBora002/Poshan-Pahad" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <span class="badge" style="margin-top: 10px;">GenAI & NLP</span>
-                </div>
-            </div>
-
-            <!-- Project 2: flask-todo-list -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">Flask To-Do App</h3>
-                <p class="exp-desc">A robust, full-stack To-Do List application built with Flask and SQLite. Features user authentication and task prioritization.</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <a href="https://github.com/AjayBora002/flask-todo-list" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <span class="badge" style="margin-top: 10px;">Flask & SQLite</span>
-                </div>
-            </div>
-
-            <!-- Project 3: Library Management -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">Library Management</h3>
-                <p class="exp-desc">Full-stack library system with Python/Flask backend and React frontend handling books and transactions.</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <a href="https://github.com/AjayBora002/Library_Management" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <span class="badge" style="margin-top: 10px;">Python & React</span>
-                </div>
-            </div>
-
-            <!-- Project 4: Voice Assistant -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">Jarvis Voice Assistant</h3>
-                <p class="exp-desc">Python-based voice assistant (Jarvis) performing tasks like web search, weather updates, and AI chatting using Google Gemini API.</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <a href="https://github.com/AjayBora002/Voice-Assistant" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <span class="badge" style="margin-top: 10px;">Python & Gemini API</span>
-                </div>
-            </div>
-
-            <!-- Project 5: Movie Recommendation -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">Movie Recommender</h3>
-                <p class="exp-desc">Interactive Movie Recommendation System delivering personalized suggestions using content-based filtering techniques.</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <a href="https://github.com/AjayBora002/movie_recommendation" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <span class="badge" style="margin-top: 10px;">NLP & Recommendation</span>
-                </div>
-            </div>
-
-            <!-- Project 6: Anime Recommendation -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">Anime Recommender</h3>
-                <p class="exp-desc">Python-based system that helps users discover new anime titles using collaborative filter techniques.</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <a href="https://github.com/AjayBora002/anime_recommendation" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <span class="badge" style="margin-top: 10px;">Python & ML</span>
-                </div>
-            </div>
-
-            <!-- Project 7: AjayBora Portfolio -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">AjayBora Portfolio</h3>
-                <p class="exp-desc">A fully responsive personal portfolio website featuring a modern Glassmorphism UI. Built with pure HTML, CSS, and JavaScript.</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <a href="https://github.com/AjayBora002/AjayBora_portfolio" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                    <span class="badge" style="margin-top: 10px;">HTML/CSS & JS</span>
-                </div>
-            </div>
-
-            <!-- Project 8: CertiSort -->
-            <div class="bento-card project-item">
-                <h3 class="card-title">CertiSort</h3>
-                <p class="exp-desc">AI tool to rename and organize certificate PDFs based on content. (In Progress)</p>
-                <div class="hero-links" style="margin-top: 20px;">
-                    <span class="badge">In-Progress</span>
-                </div>
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="content-section" style="background: var(--bg-soft);">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="card-grid">
+                <!-- Poshan Pahad -->
+                <article class="premium-card">
+                    <h3>Poshan Pahad AI</h3>
+                    <p class="achieve-desc">GenAI conversational assistant for hyper-localized nutrition and agricultural guidance in hilly regions.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GenAI</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/AjayBora002/Poshan-Pahad" target="_blank" class="btn-icon"><i class="fab fa-github"></i></a>
+                    </div>
+                </article>
+                <!-- Library Management -->
+                <article class="premium-card">
+                    <h3>Library Management</h3>
+                    <p class="achieve-desc">Full-stack inventory system with a Python/Flask backend and React frontend. High-security authentication and MySQL schema.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">MySQL</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/AjayBora002/Library_Management" target="_blank" class="btn-icon"><i class="fab fa-github"></i></a>
+                    </div>
+                </article>
+                <!-- Voice Assistant -->
+                <article class="premium-card">
+                    <h3>Jarvis Voice Assistant</h3>
+                    <p class="achieve-desc">Python-based AI using Google Gemini API for tasks like web search, weather, reminders, and AI chatting.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Gemini API</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/AjayBora002/Voice-Assistant" target="_blank" class="btn-icon"><i class="fab fa-github"></i></a>
+                    </div>
+                </article>
             </div>
         </section>
 
+        <!-- HACKATHONS SECTION -->
+        <section id="hackathons" class="content-section">
+            <h2 class="section-title">Hackathons & Competitions</h2>
+            <div class="card-grid">
+                <!-- KDSH -->
+                <article class="premium-card">
+                    <h3 class="exp-company">KDSH 2026</h3>
+                    <p class="exp-role">IIT Kharagpur</p>
+                    <p class="achieve-desc">One of India's largest data science hackathons, tackling real-world predictive modeling and data challenges.</p>
+                    <a href="assets/KDSH_2026_Ajay_Bora.pdf" target="_blank" class="link-pdf"><i class="fas fa-file-pdf"></i> View Certificate</a>
+                </article>
+                <!-- Haxplore -->
+                <article class="premium-card">
+                    <h3 class="exp-company">Haxplore 2026</h3>
+                    <p class="exp-role">IIT-BHU (CodeFest'26)</p>
+                    <p class="achieve-desc">Competed in the flagship hackathon, building innovative fintech solutions under time constraints.</p>
+                    <a href="assets/haxplore_iitbhu.pdf" target="_blank" class="link-pdf"><i class="fas fa-file-pdf"></i> View Certificate</a>
+                </article>
+                <!-- Serve-Smart -->
+                <article class="premium-card">
+                    <h3 class="exp-company">Serve-Smart Hackathon</h3>
+                    <p class="exp-role">IIT-BHU (Jagriti 2026)</p>
+                    <p class="achieve-desc">Developed mission-driven applications focused on social impact and service optimization.</p>
+                    <a href="assets/serve_smart_hackathon.pdf" target="_blank" class="link-pdf"><i class="fas fa-file-pdf"></i> View Certificate</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- JOB SIMULATIONS SECTION -->
+        <section id="job-simulations" class="content-section" style="background: var(--bg-soft);">
+            <h2 class="section-title">Professional Job Simulations</h2>
+            <div class="card-grid">
+                <!-- JPMC -->
+                <article class="premium-card">
+                    <h3 class="exp-company">J.P. Morgan</h3>
+                    <p class="exp-role">Software Engineering Simulation</p>
+                    <p class="achieve-desc">Advanced backend development with Spring Boot and Java. Interfaced with stock data feeds and financial systems.</p>
+                    <a href="assets/jpmc_cert.pdf" target="_blank" class="link-pdf"><i class="fas fa-file-pdf"></i> View Certificate</a>
+                </article>
+                <!-- Deloitte Analytics -->
+                <article class="premium-card">
+                    <h3 class="exp-company">Deloitte</h3>
+                    <p class="exp-role">Data Analytics Simulation</p>
+                    <p class="achieve-desc">Performed data quality assessment, forensic insights, and Tableau visualizations for strategic consultation.</p>
+                    <a href="assets/deloitte_data_cert.pdf" target="_blank" class="link-pdf"><i class="fas fa-file-pdf"></i> View Certificate</a>
+                </article>
+                <!-- Deloitte Tech -->
+                <article class="premium-card">
+                    <h3 class="exp-company">Deloitte</h3>
+                    <p class="exp-role">Technology Job Simulation</p>
+                    <p class="achieve-desc">Platform engineering and software logic processing. Implementing unit tests and JSON data handling.</p>
+                    <a href="assets/deloitte_tech_cert.pdf" target="_blank" class="link-pdf"><i class="fas fa-file-pdf"></i> View Certificate</a>
+                </article>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Ajay Bora. Hand-crafted with modern tech.</p>
+        <p>&copy; 2026 Ajay-Bora | Hand-crafted with modern tech.</p>
     </footer>
 
     <!-- Link to external JS -->
