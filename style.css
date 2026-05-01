@@ -433,3 +433,88 @@ h1, h2, h3, h4, h5, h6,
     .footer-title { font-size: 3rem; }
     .contact-form-wrapper { margin-left: 0; max-width: 100%; margin-top: 24px; text-align: center; }
 }
+
+/* ── MUSIC WIDGET (EASTER EGG) ─────────────────────── */
+.music-widget {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--border-subtle);
+    border-radius: var(--radius-pill);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow-soft);
+    z-index: 10;
+}
+.music-widget:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    background: rgba(255, 255, 255, 0.9);
+}
+[data-theme="dark"] .music-widget {
+    background: rgba(30, 41, 59, 0.7);
+}
+
+.music-art {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #000, #818cf8);
+    border-radius: 50%;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.music-song {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+.music-artist {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.music-equalizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+}
+.eq-bar {
+    width: 3px;
+    background: #000;
+    border-radius: 2px;
+    animation: eq-bounce 0.8s ease-in-out infinite alternate;
+}
+[data-theme="dark"] .eq-bar { background: #fff; }
+
+.eq-bar-1 { animation-delay: 0s; }
+.eq-bar-2 { animation-delay: 0.2s; }
+.eq-bar-3 { animation-delay: 0.4s; }
+
+@keyframes eq-bounce {
+    from { height: 4px; }
+    to { height: 14px; }
+}
+
+@media (max-width: 768px) {
+    .music-widget {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin-top: 40px;
+        align-self: center;
+    }
+}
