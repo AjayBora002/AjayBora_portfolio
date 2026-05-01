@@ -26,29 +26,47 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid messages format' });
     }
 
+    // Convert frontend message format → Gemini format
+    // Frontend: { role: 'user'|'assistant', content: '...' }
+    // Gemini:   { role: 'user'|'model',     parts: [{ text: '...' }] }
+    const geminiContents = messages.map(msg => ({
+        role: msg.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: msg.content }]
+    }));
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
     try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
+        const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': process.env.ANTHROPIC_API_KEY,
-                'anthropic-version': '2023-06-01'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                model: 'claude-sonnet-4-20250514',
-                max_tokens: 400,
-                system: SYSTEM_PROMPT,
-                messages: messages
+                system_instruction: {
+                    parts: [{ text: SYSTEM_PROMPT }]
+                },
+                contents: geminiContents,
+                generationConfig: {
+                    maxOutputTokens: 400,
+                    temperature: 0.7
+                }
             })
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            return res.status(response.status).json({ error: data.error?.message || 'API error' });
+            return res.status(response.status).json({
+                error: data.error?.message || 'Gemini API error'
+            });
         }
 
-        return res.status(200).json({ reply: data.content[0].text });
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!reply) {
+            return res.status(500).json({ error: 'No response from Gemini' });
+        }
+
+        return res.status(200).json({ reply });
     } catch (error) {
         console.error('Chat API error:', error);
         return res.status(500).json({ error: 'Internal server error' });
