@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initTimelineAnimation();
     initProjectPreview();
+    initChatbot();
 });
 
 // ── MAGNETIC BUTTONS ──────────────────────────────────
@@ -726,4 +727,112 @@ function initProjectPreview() {
             panel.classList.remove('visible');
         });
     });
+}
+
+// ── AI CHATBOT ────────────────────────────────────────
+function initChatbot() {
+    const wrapper    = document.getElementById('chatbot-wrapper');
+    const toggleBtn  = document.getElementById('chatbot-toggle');
+    const closeBtn   = document.getElementById('chatbot-close');
+    const panel      = document.getElementById('chatbot-panel');
+    const messagesEl = document.getElementById('chatbot-messages');
+    const input      = document.getElementById('chatbot-input');
+    const sendBtn    = document.getElementById('chatbot-send');
+
+    if (!wrapper || !toggleBtn) return;
+
+    let history = [];
+    let isOpen  = false;
+    let greeted = false;
+
+    const GREETING = "Hi! 👋 I'm Ajay's AI assistant. Ask me anything about his skills, projects, or experience!";
+
+    function addBubble(text, role) {
+        const bubble = document.createElement('div');
+        bubble.className = `chatbot-bubble ${role}`;
+        bubble.textContent = text;
+        messagesEl.appendChild(bubble);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        return bubble;
+    }
+
+    function showTyping() {
+        const el = document.createElement('div');
+        el.className = 'chatbot-typing';
+        el.id = 'chatbot-typing-indicator';
+        el.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+        messagesEl.appendChild(el);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function hideTyping() {
+        const el = document.getElementById('chatbot-typing-indicator');
+        if (el) el.remove();
+    }
+
+    function openChat() {
+        isOpen = true;
+        wrapper.classList.add('open');
+        input.focus();
+        if (!greeted) {
+            greeted = true;
+            addBubble(GREETING, 'ai');
+        }
+    }
+
+    function closeChat() {
+        isOpen = false;
+        wrapper.classList.remove('open');
+    }
+
+    toggleBtn.addEventListener('click', () => isOpen ? closeChat() : openChat());
+    closeBtn.addEventListener('click', closeChat);
+
+    async function sendMessage() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        input.value = '';
+        sendBtn.disabled = true;
+        input.disabled   = true;
+
+        addBubble(text, 'user');
+        history.push({ role: 'user', content: text });
+
+        showTyping();
+
+        try {
+            const res = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: history })
+            });
+
+            const data = await res.json();
+            hideTyping();
+
+            if (res.ok && data.reply) {
+                addBubble(data.reply, 'ai');
+                history.push({ role: 'assistant', content: data.reply });
+            } else {
+                addBubble('Sorry, I ran into an error. Please try again!', 'ai');
+            }
+        } catch (err) {
+            hideTyping();
+            addBubble('Network error. Please check your connection.', 'ai');
+        }
+
+        sendBtn.disabled = false;
+        input.disabled   = false;
+        input.focus();
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+}
 }

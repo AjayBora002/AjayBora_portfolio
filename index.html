@@ -823,6 +823,44 @@
 
     <div id="project-preview-panel"></div>
 
+    <!-- ── AI CHATBOT WIDGET ────────────────────────── -->
+    <div id="chatbot-wrapper">
+        <!-- Toggle Button -->
+        <button id="chatbot-toggle" aria-label="Open AI Chat Assistant">
+            <i class="fas fa-robot" id="chatbot-icon-open"></i>
+            <i class="fas fa-times" id="chatbot-icon-close"></i>
+        </button>
+
+        <!-- Chat Panel -->
+        <div id="chatbot-panel" role="dialog" aria-label="Ask Ajay AI Assistant">
+            <div id="chatbot-header">
+                <div class="chatbot-header-info">
+                    <div class="chatbot-avatar"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <div class="chatbot-title">Ask Ajay</div>
+                        <div class="chatbot-status"><span class="chatbot-dot"></span> AI Assistant</div>
+                    </div>
+                </div>
+                <button id="chatbot-close" aria-label="Close chat"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div id="chatbot-messages"></div>
+
+            <div id="chatbot-input-row">
+                <input
+                    type="text"
+                    id="chatbot-input"
+                    placeholder="Ask about skills, projects…"
+                    autocomplete="off"
+                    aria-label="Chat message input"
+                />
+                <button id="chatbot-send" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js?v=3.0"></script>
 </body>
 </html>
