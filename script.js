@@ -99,7 +99,79 @@ document.addEventListener('DOMContentLoaded', () => {
     initTimelineAnimation();
     initProjectPreview();
     initChatbot();
+    initLenis();
+    initGSAPAnimations();
 });
+
+// ── LENIS SMOOTH SCROLLING ────────────────────────────
+function initLenis() {
+    if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        
+        // Update ScrollTrigger on Lenis scroll if GSAP exists
+        if (typeof ScrollTrigger !== 'undefined') {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time)=>{
+              lenis.raf(time * 1000)
+            })
+            gsap.ticker.lagSmoothing(0, 0)
+        }
+    }
+}
+
+// ── GSAP ANIMATIONS ──────────────────────────────────
+function initGSAPAnimations() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 1. Page Load Reveal Sequence
+    const tl = gsap.timeline();
+    // Hide initially via GSAP so it can reveal
+    gsap.set('header', { y: -20, opacity: 0 });
+    gsap.set('.hero-content > *', { y: 20, opacity: 0 });
+    gsap.set('.profile-wrapper', { scale: 0.9, opacity: 0 });
+    
+    tl.to('header', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.2 })
+      .to('.hero-content h1', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+      .to('.hero-content .subtitle', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+      .to('.hero-description', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+      .to('.hero-buttons', { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+      .to('.profile-wrapper', { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(1.5)' }, '-=0.6');
+
+    // 2. Section Titles Scroll Reveal
+    gsap.utils.toArray('.section-title').forEach(title => {
+        gsap.fromTo(title, 
+            { y: 30, opacity: 0 },
+            {
+                scrollTrigger: {
+                    trigger: title,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out'
+            }
+        );
+    });
+}
 
 // ── MAGNETIC BUTTONS ──────────────────────────────────
 function initMagneticButtons() {
