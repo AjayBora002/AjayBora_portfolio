@@ -1,3 +1,4 @@
+// ── AJAY BORA PORTFOLIO — CORE LOGIC ──────────────────
 // ── CUSTOM CURSOR (Light Mode Adjusted) ────────────
 function initCursor() {
     const orb = document.getElementById('cursor-orb');
