@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSkillsBarsAnimation();
     initThemeToggle();
     initTimelineAnimation();
+    initProjectPreview();
 });
 
 // ── MAGNETIC BUTTONS ──────────────────────────────────
@@ -643,4 +644,72 @@ function initTimelineAnimation() {
     }, { threshold: 0.2 });
 
     timelineItems.forEach(item => observer.observe(item));
+}
+
+// ── PROJECT PREVIEW ───────────────────────────────────
+function initProjectPreview() {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    const cards = document.querySelectorAll('.project-card');
+    const panel = document.getElementById('project-preview-panel');
+    let hoverTimeout;
+
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const tech = card.dataset.previewTech;
+            const impact = card.dataset.previewImpact;
+            const status = card.dataset.previewStatus;
+
+            if (!tech) return;
+
+            hoverTimeout = setTimeout(() => {
+                // Update content
+                const techPills = tech.split(' · ').map(t => `<span class="preview-tech-pill">${t}</span>`).join('');
+                panel.innerHTML = `
+                    <div class="preview-item">
+                        <div class="preview-title">Tech Stack</div>
+                        <div class="preview-tech-group">${techPills}</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-title">Impact</div>
+                        <div class="preview-impact">${impact}</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-status"><i class="fas fa-circle"></i> ${status}</div>
+                    </div>
+                `;
+
+                // Positioning
+                const rect = card.getBoundingClientRect();
+                const panelWidth = 280;
+                const gap = 20;
+                
+                let left = rect.right + gap;
+                let transformX = 10;
+
+                // Check if right side has enough space
+                if (left + panelWidth > window.innerWidth) {
+                    left = rect.left - panelWidth - gap;
+                    transformX = -10;
+                }
+
+                // Vertical centering relative to card
+                let top = rect.top + (rect.height / 2) - (panel.offsetHeight / 2);
+                
+                // Boundary checks for top/bottom
+                top = Math.max(20, Math.min(top, window.innerHeight - panel.offsetHeight - 20));
+
+                panel.style.left = `${left}px`;
+                panel.style.top = `${top}px`;
+                panel.style.setProperty('--tx', `${transformX}px`);
+                
+                panel.classList.add('visible');
+            }, 600);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+            panel.classList.remove('visible');
+        });
+    });
 }
