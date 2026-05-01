@@ -26,45 +26,44 @@ module.exports = async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid messages format' });
     }
 
-    // Convert frontend format → Gemini format
-    // Frontend: { role: 'user'|'assistant', content: '...' }
-    // Gemini:   { role: 'user'|'model',     parts: [{ text: '...' }] }
-    const geminiContents = messages.map(msg => ({
-        role: msg.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: msg.content }]
-    }));
+    // Groq uses standard OpenAI message format
+    const groqMessages = [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...messages
+    ];
 
-    const apiKey = process.env.GEMINI_API_KEY;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+        return res.status(500).json({ error: 'Missing GROQ_API_KEY in Vercel' });
+    }
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
             body: JSON.stringify({
-                system_instruction: {
-                    parts: [{ text: SYSTEM_PROMPT }]
-                },
-                contents: geminiContents,
-                generationConfig: {
-                    maxOutputTokens: 400,
-                    temperature: 0.7
-                }
+                model: 'llama3-8b-8192',
+                messages: groqMessages,
+                max_tokens: 400,
+                temperature: 0.7
             })
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            console.error('Gemini error:', JSON.stringify(data));
+            console.error('Groq error:', JSON.stringify(data));
             return res.status(response.status).json({
-                error: data.error?.message || 'Gemini API error'
+                error: data.error?.message || 'Groq API error'
             });
         }
 
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        const reply = data.choices?.[0]?.message?.content;
         if (!reply) {
-            return res.status(500).json({ error: 'Empty response from Gemini' });
+            return res.status(500).json({ error: 'Empty response from Groq' });
         }
 
         return res.status(200).json({ reply });
