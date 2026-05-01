@@ -815,11 +815,13 @@ function initChatbot() {
                 addBubble(data.reply, 'ai');
                 history.push({ role: 'assistant', content: data.reply });
             } else {
-                addBubble('Sorry, I ran into an error. Please try again!', 'ai');
+                addBubble(`Error: ${data.error || 'Unknown Server Error'}`, 'ai');
+                console.error("Chatbot API Error Data:", data);
             }
         } catch (err) {
             hideTyping();
-            addBubble('Network error. Please check your connection.', 'ai');
+            addBubble(`Network Error: ${err.message}`, 'ai');
+            console.error("Chatbot Network Error:", err);
         }
 
         sendBtn.disabled = false;
