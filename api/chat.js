@@ -13,7 +13,7 @@ Serve-Smart 2026 (IIT-BHU).
 Contact: boraajay26@gmail.com | GitHub: AjayBora002 | LinkedIn: ajaybora002
 Keep all answers concise, friendly, and professional.`;
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid messages format' });
     }
 
-    // Convert frontend message format → Gemini format
+    // Convert frontend format → Gemini format
     // Frontend: { role: 'user'|'assistant', content: '...' }
     // Gemini:   { role: 'user'|'model',     parts: [{ text: '...' }] }
     const geminiContents = messages.map(msg => ({
@@ -56,6 +56,7 @@ export default async function handler(req, res) {
         const data = await response.json();
 
         if (!response.ok) {
+            console.error('Gemini error:', JSON.stringify(data));
             return res.status(response.status).json({
                 error: data.error?.message || 'Gemini API error'
             });
@@ -63,7 +64,7 @@ export default async function handler(req, res) {
 
         const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
         if (!reply) {
-            return res.status(500).json({ error: 'No response from Gemini' });
+            return res.status(500).json({ error: 'Empty response from Gemini' });
         }
 
         return res.status(200).json({ reply });
@@ -71,4 +72,4 @@ export default async function handler(req, res) {
         console.error('Chat API error:', error);
         return res.status(500).json({ error: 'Internal server error' });
     }
-}
+};
