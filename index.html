@@ -19,6 +19,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=2.0">
+    <script>
+        (function() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 <body>
     <div id="scroll-progress"></div>
@@ -52,6 +60,9 @@
                 </nav>
                 
                 <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                        <i class="fas fa-sun"></i>
+                    </button>
                     <a href="#contact" class="btn btn-primary btn-pill desktop-only">Get Started <i class="fas fa-arrow-up-right-from-square"></i></a>
                     <button class="hamburger-btn" aria-label="Toggle Navigation">
                         <i class="fas fa-bars"></i>

@@ -23,6 +23,49 @@
     --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+[data-theme="dark"] {
+    --bg-base: #0f172a;
+    --bg-card: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-subtle: 1px solid rgba(255,255,255,0.06);
+    --shadow-soft: 0 12px 36px -12px rgba(0,0,0,0.4);
+}
+
+/* Specific Dark Mode Fixes */
+[data-theme="dark"] .bg-shape { opacity: 0.15; }
+[data-theme="dark"] .stat-number { color: #fff; }
+[data-theme="dark"] .logo { color: #fff; }
+[data-theme="dark"] .nav-links a { color: #cbd5e1; }
+[data-theme="dark"] .section-badge { background: #1e293b; border: 1px solid rgba(255,255,255,0.06); color: #94a3b8; }
+[data-theme="dark"] .btn-white { background: #1e293b; color: #fff; border-color: rgba(255,255,255,0.1); }
+[data-theme="dark"] #cursor-orb { background: #fff; }
+[data-theme="dark"] #cursor-follower { border-color: rgba(255,255,255,0.3); }
+[data-theme="dark"] .theme-btn { color: #fff; background: rgba(255,255,255,0.05); }
+[data-theme="dark"] .expertise-grid .expert-card { background: #1e293b; border: 1px solid rgba(255,255,255,0.03); }
+
+/* Theme Button Style */
+.theme-btn {
+    background: rgba(0,0,0,0.05);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    transition: var(--transition);
+    margin-right: 12px;
+}
+.theme-btn:hover {
+    background: rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {

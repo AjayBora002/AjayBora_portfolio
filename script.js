@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollProgress();
     initMagneticButtons();
     initSkillsBarsAnimation();
+    initThemeToggle();
 });
 
 // ── MAGNETIC BUTTONS ──────────────────────────────────
@@ -592,4 +593,37 @@ function initSkillsBarsAnimation() {
     }, { threshold: 0.3 });
 
     observer.observe(section);
+}
+
+// ── THEME TOGGLE ──────────────────────────────────────
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    const icon = themeToggle.querySelector('i');
+    
+    // Set initial icon based on current theme
+    const updateIcon = (theme) => {
+        if (theme === 'dark') {
+            icon.className = 'fas fa-moon';
+        } else {
+            icon.className = 'fas fa-sun';
+        }
+    };
+
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateIcon(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark') {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            updateIcon('light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            updateIcon('dark');
+        }
+    });
 }
