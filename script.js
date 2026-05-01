@@ -282,7 +282,7 @@ function initTiltEffect() {
     // Skip on touch devices
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
-    const cards = document.querySelectorAll('.project-card');
+    const cards = document.querySelectorAll('.project-card, .about-image');
 
     cards.forEach(card => {
         // Create glare element
