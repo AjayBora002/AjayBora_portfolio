@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initSkillsBarsAnimation();
     initThemeToggle();
+    initTimelineAnimation();
 });
 
 // ── MAGNETIC BUTTONS ──────────────────────────────────
@@ -626,4 +627,20 @@ function initThemeToggle() {
             updateIcon('dark');
         }
     });
+}
+
+// ── TIMELINE ANIMATION ────────────────────────────────
+function initTimelineAnimation() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    if (timelineItems.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    timelineItems.forEach(item => observer.observe(item));
 }
