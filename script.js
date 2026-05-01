@@ -526,9 +526,13 @@ function initContactForm() {
 
             if(response.ok && result.success) {
                 form.reset();
-                form.style.display = 'none';
                 statusMsg.textContent = '✅ Thank you! Your message has been sent.';
                 statusMsg.className = 'form-status success';
+                // Clear success message after 4 seconds so form is reusable
+                setTimeout(() => {
+                    statusMsg.textContent = '';
+                    statusMsg.className = 'form-status';
+                }, 4000);
             } else {
                 statusMsg.textContent = result.message || 'Oops! There was a problem. Please try again.';
                 statusMsg.className = 'form-status error';
