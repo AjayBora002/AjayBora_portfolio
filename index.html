@@ -783,7 +783,10 @@
                     
                     <div class="contact-form-wrapper" id="contact-form-section">
                         <span>Send a Message</span>
-                        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="contact-form">
+                        <form id="contact-form" class="contact-form">
+                            <input type="hidden" name="access_key" value="4be0c325-572e-437a-bc82-fb58f5078ec4">
+                            <input type="hidden" name="subject" value="New Message from Portfolio Contact Form">
+                            <input type="hidden" name="from_name" value="Ajay Bora Portfolio">
                             <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
                             <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
                             <textarea name="message" placeholder="Your Message" required aria-label="Your Message" rows="3"></textarea>

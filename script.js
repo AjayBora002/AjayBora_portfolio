@@ -493,7 +493,7 @@ function initProjectFilter() {
     });
 }
 
-// ── CONTACT FORM ──────────────────────────────────────
+// ── CONTACT FORM (Web3Forms) ───────────────────────────
 function initContactForm() {
     const form = document.getElementById('contact-form');
     const statusMsg = document.getElementById('form-status');
@@ -504,32 +504,41 @@ function initContactForm() {
         e.preventDefault();
         
         const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
         btn.textContent = 'Sending...';
         btn.disabled = true;
 
-        const data = new FormData(form);
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
         try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
             });
 
-            if(response.ok) {
+            const result = await response.json();
+
+            if(response.ok && result.success) {
                 form.reset();
                 form.style.display = 'none';
-                statusMsg.textContent = 'Thank you! Your message has been sent.';
+                statusMsg.textContent = '✅ Thank you! Your message has been sent.';
                 statusMsg.className = 'form-status success';
             } else {
-                statusMsg.textContent = 'Oops! There was a problem submitting your form.';
+                statusMsg.textContent = result.message || 'Oops! There was a problem. Please try again.';
                 statusMsg.className = 'form-status error';
             }
         } catch(error) {
-            statusMsg.textContent = 'Oops! There was a problem submitting your form.';
+            statusMsg.textContent = 'Network error. Please check your connection and try again.';
             statusMsg.className = 'form-status error';
         }
         
-        btn.textContent = 'Send';
+        btn.textContent = originalText;
         btn.disabled = false;
     });
 }
