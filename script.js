@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTiltEffect();
     initScrollProgress();
     initMagneticButtons();
+    initSkillsBarsAnimation();
 });
 
 // ── MAGNETIC BUTTONS ──────────────────────────────────
@@ -545,4 +546,50 @@ function initScrollToTop() {
     btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+}
+
+// ── SKILLS BARS ANIMATION ────────────────────────────
+function initSkillsBarsAnimation() {
+    const section = document.querySelector('.about-section');
+    const skillBars = document.querySelectorAll('.skill-bar-fill');
+    const skillPercents = document.querySelectorAll('.skill-bar-percent');
+    
+    if (!section || skillBars.length === 0) return;
+
+    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                skillBars.forEach((bar, index) => {
+                    const target = parseInt(bar.getAttribute('data-percent'), 10);
+                    const percentText = skillPercents[index];
+                    const duration = 1200;
+                    const delay = index * 100;
+                    let startTime = null;
+
+                    setTimeout(() => {
+                        function animate(timestamp) {
+                            if (!startTime) startTime = timestamp;
+                            const progress = Math.min((timestamp - startTime) / duration, 1);
+                            const easedProgress = easeOutCubic(progress);
+                            const currentWidth = easedProgress * target;
+                            
+                            bar.style.width = currentWidth + '%';
+                            percentText.textContent = Math.floor(currentWidth) + '%';
+
+                            if (progress < 1) {
+                                window.requestAnimationFrame(animate);
+                            }
+                        }
+                        window.requestAnimationFrame(animate);
+                    }, delay);
+                });
+                
+                observerInstance.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(section);
 }

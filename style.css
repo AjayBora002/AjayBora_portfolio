@@ -145,6 +145,18 @@ h1, h2, h3, h4, h5, h6,
 .stat-number { font-size: 2.5rem; font-weight: 600; color: #000; line-height: 1; margin-bottom: 8px; }
 .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 
+.skills-bar-group { margin-top: 48px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.skill-bar-item { width: 100%; }
+.skill-bar-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.skill-bar-name { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); }
+.skill-bar-percent { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); }
+.skill-bar-bg { height: 4px; background: var(--bg-base); border-radius: var(--radius-pill); overflow: hidden; }
+.skill-bar-fill { height: 100%; width: 0%; background: linear-gradient(to right, #000, #818cf8); border-radius: var(--radius-pill); }
+
+@media (max-width: 768px) {
+    .skills-bar-group { grid-template-columns: 1fr; gap: 24px; }
+}
+
 /* ── SECTION GLOBALS ───────────────────────────────── */
 .section-header { text-align: center; margin-bottom: 64px; display: flex; flex-direction: column; align-items: center; }
 .section-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; background: #fff; padding: 8px 16px; border-radius: var(--radius-pill); box-shadow: var(--shadow-soft); }
