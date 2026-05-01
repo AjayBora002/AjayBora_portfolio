@@ -89,10 +89,80 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollToTop();
     initTypewriter();
     initStatsCounter();
-    initHeroParticles();
+    initGlobalParticles();
     initTiltEffect();
     initScrollProgress();
+    initMagneticButtons();
 });
+
+// ── MAGNETIC BUTTONS ──────────────────────────────────
+function initMagneticButtons() {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(btn => {
+        if (!btn.querySelector('.btn-inner')) {
+            const inner = document.createElement('span');
+            inner.className = 'btn-inner';
+            while (btn.firstChild) {
+                inner.appendChild(btn.firstChild);
+            }
+            btn.appendChild(inner);
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        buttons.forEach(btn => {
+            const rect = btn.getBoundingClientRect();
+            const inner = btn.querySelector('.btn-inner');
+            
+            const style = window.getComputedStyle(btn);
+            const matrix = new DOMMatrixReadOnly(style.transform !== 'none' ? style.transform : 'matrix(1, 0, 0, 1, 0, 0)');
+            const tx = matrix.m41;
+            const ty = matrix.m42;
+            
+            const origLeft = rect.left - tx;
+            const origTop = rect.top - ty;
+            const origRight = origLeft + rect.width;
+            const origBottom = origTop + rect.height;
+
+            const cx = origLeft + rect.width / 2;
+            const cy = origTop + rect.height / 2;
+
+            const isNear = 
+                e.clientX > origLeft - 60 &&
+                e.clientX < origRight + 60 &&
+                e.clientY > origTop - 60 &&
+                e.clientY < origBottom + 60;
+
+            if (isNear) {
+                btn.classList.add('is-magnetic');
+                
+                const dx = e.clientX - cx;
+                const dy = e.clientY - cy;
+                
+                let ox = dx * 0.3;
+                let oy = dy * 0.3;
+
+                const pullDist = Math.hypot(ox, oy);
+                if (pullDist > 12) {
+                    ox = (ox / pullDist) * 12;
+                    oy = (oy / pullDist) * 12;
+                }
+
+                btn.style.transform = `translate(${ox}px, ${oy}px)`;
+                if(inner) inner.style.transform = `translate(${ox * 0.5}px, ${oy * 0.5}px)`;
+            } else {
+                if (btn.classList.contains('is-magnetic')) {
+                    btn.classList.remove('is-magnetic');
+                    btn.style.transform = '';
+                    if(inner) inner.style.transform = '';
+                }
+            }
+        });
+    });
+}
 
 // ── SCROLL PROGRESS INDICATOR ─────────────────────────
 function initScrollProgress() {
@@ -128,21 +198,23 @@ function initScrollProgress() {
     }, { passive: true });
 }
 
-// ── HERO PARTICLES ──────────────────────────────────────
-function initHeroParticles() {
-    const canvas = document.getElementById('hero-particles');
+// ── GLOBAL PARTICLES ──────────────────────────────────────
+function initGlobalParticles() {
+    const canvas = document.getElementById('global-particles');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     
-    let width = canvas.width = canvas.parentElement.offsetWidth;
-    let height = canvas.height = canvas.parentElement.offsetHeight;
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
     
     const particles = [];
-    const particleCount = 60;
+    // Increase density for full site: roughly 1 particle per 15000 pixels
+    let particleCount = Math.floor((width * height) / 15000);
+    particleCount = Math.min(Math.max(particleCount, 60), 180); 
     
     window.addEventListener('resize', () => {
-        width = canvas.width = canvas.parentElement.offsetWidth;
-        height = canvas.height = canvas.parentElement.offsetHeight;
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
     });
 
     class Particle {
@@ -165,7 +237,7 @@ function initHeroParticles() {
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(17, 17, 17, 0.2)';
+            ctx.fillStyle = 'rgba(17, 17, 17, 0.1)'; // Softer for global background
             ctx.fill();
         }
     }
@@ -188,7 +260,7 @@ function initHeroParticles() {
                 
                 if (distance < 120) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(17, 17, 17, ${0.1 * (1 - distance/120)})`;
+                    ctx.strokeStyle = `rgba(17, 17, 17, ${0.05 * (1 - distance/120)})`; // Fainter lines
                     ctx.lineWidth = 1;
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
