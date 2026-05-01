@@ -87,7 +87,249 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectFilter();
     initContactForm();
     initScrollToTop();
+    initTypewriter();
+    initStatsCounter();
+    initHeroParticles();
+    initTiltEffect();
+    initScrollProgress();
 });
+
+// ── SCROLL PROGRESS INDICATOR ─────────────────────────
+function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    let ticking = false;
+
+    function updateProgress() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = Math.max(
+            document.body.scrollHeight, 
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight, 
+            document.documentElement.offsetHeight,
+            document.body.clientHeight, 
+            document.documentElement.clientHeight
+        );
+        const winHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        let scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+        scrollPercent = Math.max(0, Math.min(100, scrollPercent));
+        
+        progressBar.style.width = scrollPercent + '%';
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateProgress);
+            ticking = true;
+        }
+    }, { passive: true });
+}
+
+// ── HERO PARTICLES ──────────────────────────────────────
+function initHeroParticles() {
+    const canvas = document.getElementById('hero-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    let width = canvas.width = canvas.parentElement.offsetWidth;
+    let height = canvas.height = canvas.parentElement.offsetHeight;
+    
+    const particles = [];
+    const particleCount = 60;
+    
+    window.addEventListener('resize', () => {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+    });
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 1.5;
+            this.vy = (Math.random() - 0.5) * 1.5;
+            this.radius = Math.random() * 1.5 + 1.5;
+        }
+        
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(17, 17, 17, 0.2)';
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        for (let i = 0; i < particleCount; i++) {
+            particles[i].update();
+            particles[i].draw();
+            
+            for (let j = i + 1; j < particleCount; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 120) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(17, 17, 17, ${0.1 * (1 - distance/120)})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+}
+
+// ── 3D TILT EFFECT ────────────────────────────────────
+function initTiltEffect() {
+    // Skip on touch devices
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
+    const cards = document.querySelectorAll('.project-card');
+
+    cards.forEach(card => {
+        // Create glare element
+        const glare = document.createElement('div');
+        glare.classList.add('card-glare');
+        card.appendChild(glare);
+
+        card.addEventListener('mouseenter', () => {
+            card.classList.add('is-tilting');
+            glare.style.opacity = '1';
+        });
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculate rotation (-8deg to 8deg)
+            const rotateX = -((y - centerY) / centerY) * 8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            const isPopular = card.classList.contains('popular');
+            const baseScale = isPopular ? 1.02 : 1;
+            const scale = `scale(${baseScale * 1.02})`; // Slight lift on hover
+
+            card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) ${scale}`;
+            
+            // Move glare
+            glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('is-tilting');
+            card.style.transform = '';
+            glare.style.opacity = '0';
+        });
+    });
+}
+
+// ── STATS COUNT-UP ANIMATION ──────────────────────────
+function initStatsCounter() {
+    const section = document.querySelector('.about-section');
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    if (!section || statNumbers.length === 0) return;
+
+    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-target'), 10);
+                    const suffix = stat.getAttribute('data-suffix') || '';
+                    const duration = 1500;
+                    let startTime = null;
+
+                    function step(timestamp) {
+                        if (!startTime) startTime = timestamp;
+                        const progress = Math.min((timestamp - startTime) / duration, 1);
+                        const currentCount = Math.floor(easeOutCubic(progress) * target);
+                        
+                        stat.textContent = currentCount + (progress === 1 ? suffix : '');
+
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    }
+                    window.requestAnimationFrame(step);
+                });
+                
+                observerInstance.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    observer.observe(section);
+}
+
+// ── TYPEWRITER ANIMATION ──────────────────────────────
+function initTypewriter() {
+    const typewriterElement = document.getElementById('typewriter');
+    if (!typewriterElement) return;
+
+    const words = ["AI/ML Engineer", "Data Scientist", "Python Developer", "Data Visualization Expert"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 80;
+    let deleteSpeed = 40;
+    let pauseTime = 1800;
+
+    function type() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let delay = isDeleting ? deleteSpeed : typeSpeed;
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            delay = pauseTime;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            delay = 500;
+        }
+
+        setTimeout(type, delay);
+    }
+
+    setTimeout(type, 1000);
+}
 
 // ── MOBILE NAVIGATION ──────────────────────────────────
 function initMobileNav() {

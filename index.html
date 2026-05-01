@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="scroll-progress"></div>
     <!-- Background Effects -->
     <div class="bg-shape bg-shape-1"></div>
     <div class="bg-shape bg-shape-2"></div>
@@ -74,6 +75,7 @@
 
         <!-- Hero Section -->
         <section class="hero-section">
+            <canvas id="hero-particles" class="hero-canvas"></canvas>
             <div class="hero-content reveal" style="animation-delay: 0.1s;">
                 <div class="hero-badge">
                     <span class="status-dot"></span> Available for new opportunities <i class="fas fa-arrow-right"></i>
@@ -85,6 +87,10 @@
                         AJAY BORA
                     </div>
                 </h1>
+                
+                <div class="typewriter-container reveal" style="animation-delay: 0.15s;">
+                    <span id="typewriter"></span><span class="typewriter-cursor">|</span>
+                </div>
                 
                 <p class="hero-subtitle">
                     Intelligent AI solutions and scalable data pipelines, built for the innovators of tomorrow.
@@ -117,16 +123,16 @@
                     </p>
                     
                     <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">10+</span>
-                            <span class="stat-label">Projects Built</span>
+                        <div class="stat-item reveal" style="animation-delay: 0.3s;">
+                            <span class="stat-number" data-target="10" data-suffix="+">0</span>
+                            <span class="stat-label">Projects</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">2</span>
+                        <div class="stat-item reveal" style="animation-delay: 0.4s;">
+                            <span class="stat-number" data-target="2">0</span>
                             <span class="stat-label">Internships</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">5</span>
+                        <div class="stat-item reveal" style="animation-delay: 0.5s;">
+                            <span class="stat-number" data-target="5">0</span>
                             <span class="stat-label">Certifications</span>
                         </div>
                     </div>
